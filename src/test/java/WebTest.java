@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 public class WebTest {
 
     @Test
@@ -32,6 +33,27 @@ public class WebTest {
 
         WebElement h2 = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'main']/h2"));
         String actualResult = h2.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
+
+    @Test
+    public static void testMenuStartHeader() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "99 Bottles of Beer";
+
+        System.setProperty(chromeDriver,driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement h1 = driver.findElement(By.xpath("//h1[text() = '99 Bottles of Beer']"));
+        String actualResult = h1.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
 
