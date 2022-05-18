@@ -47,15 +47,66 @@ public class WebTest {
         String url = "http://www.99-bottles-of-beer.net/";
         String expectedResult = "99 Bottles of Beer";
 
-        System.setProperty(chromeDriver,driverPath);
+        System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
 
         driver.get(url);
 
-        WebElement h1 = driver.findElement(By.xpath("//h1[text() = '99 Bottles of Beer']"));
+        WebElement h1 = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'header']/h1"));
         String actualResult = h1.getText();
 
-        Assert.assertEquals(actualResult,expectedResult);
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
+
+    @Test
+    public static void testStartMenuSubmitNewLanguage() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "SUBMIT NEW LANGUAGE";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath(
+            "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']"
+        ));
+        String actualResult = menuSubmitNewLanguage.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
+
+    @Test
+    public static void testMenuSubmitNewLanguageIsTitleSubmitNewLanguage() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "Submit New Language";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuSubmitNewLanguage = driver.findElement(By.xpath(
+          "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
+        );
+        menuSubmitNewLanguage.click();
+
+        WebElement nameTitleIsSubmitNewLanguage = driver.findElement(By.xpath(
+                "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'submenu']/li/a")
+        );
+        String actualResult = nameTitleIsSubmitNewLanguage.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
 
         driver.quit();
     }
