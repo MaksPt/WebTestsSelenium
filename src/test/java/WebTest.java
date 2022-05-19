@@ -84,7 +84,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testMenuSubmitNewLanguageIsTitleSubmitNewLanguage() {
+    public static void testInSubmitNewLanguageIsTitleSubmitNewLanguage() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -110,4 +110,39 @@ public class WebTest {
 
         driver.quit();
     }
+
+    @Test
+    public static void testBrowseLanguagesTitleIsZeroToNine() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "0-9";
+
+        System.setProperty(chromeDriver,driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement menuBrowseLanguages = driver.findElement(
+                By.xpath("//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'menu']/li/a[@href = '/abc.html']")
+        );
+        menuBrowseLanguages.click();
+
+        WebElement titleIsZeroToNine = driver.findElement(By.xpath("//a[@href = '0.html']"));
+        String actualResult = titleIsZeroToNine.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+        driver.quit();
+
+
+
+
+
+
+
+    }
+
+
 }
