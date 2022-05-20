@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class WebTest {
 
     @Test
@@ -405,11 +404,41 @@ public class WebTest {
         driver.quit();
     }
 
+    @Test
+    public static void styleImportant() {
 
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResultStyle = "background-color: red; color: white;";
+        String expectedResultBolt = "b";
+//        String expectedResultBolt = "700";
+        String expectedResultCapital = "IMPORTANT:";
 
+        System.setProperty(chromeDriver,driverPath);
+        WebDriver driver = new ChromeDriver();
 
+        driver.get(url);
 
+        WebElement submitNewLanguage = driver.findElement(
+                By.xpath("//ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
+        );
+        submitNewLanguage.click();
 
+        WebElement submitNewLanguageImportantStyle = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span"));
+        String actualResultStyle = submitNewLanguageImportantStyle.getAttribute("style");
 
+        WebElement submitNewLanguageImportantBolt = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span/b"));
+        String actualResultBolt = submitNewLanguageImportantBolt.getTagName();
+//        String actualResultBolt = submitNewLanguageImportantBolt.getCssValue("font-weight");
 
+        WebElement submitNewLanguageImportantCapital = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span/b"));
+        String actualResultCapital = submitNewLanguageImportantCapital.getText();
+
+        Assert.assertEquals(actualResultStyle,expectedResultStyle);
+        Assert.assertEquals(actualResultBolt,expectedResultBolt);
+        Assert.assertEquals(actualResultCapital,expectedResultCapital.toUpperCase());
+
+        driver.quit();
+    }
 }
