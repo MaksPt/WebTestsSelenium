@@ -156,9 +156,13 @@ public class WebTest {
 
         submenuTeam.click();
 
-        WebElement testOliver = driver.findElement(By.xpath("//*[text() = 'Oliver Schade']"));
-        WebElement testGregor = driver.findElement(By.xpath("//*[text() = 'Gregor Scheithauer']"));
-        WebElement testStefan = driver.findElement(By.xpath("//*[text() = 'Stefan Scheler']"));
+//        WebElement testOliver = driver.findElement(By.xpath("//h3[text () = 'Oliver Schade']"));
+//        WebElement testGregor = driver.findElement(By.xpath("//h3[text () = 'Gregor Scheithauer']"));
+//        WebElement testStefan = driver.findElement(By.xpath("//h3[text () = 'Stefan Scheler']"));
+        WebElement testOliver = driver.findElement(By.xpath("//div[@id = 'main']/h3[1]"));
+        WebElement testGregor = driver.findElement(By.xpath("//div[@id = 'main']/h3[2]"));
+        WebElement testStefan = driver.findElement(By.xpath("//div[@id = 'main']/h3[3]"));
+
         String actualResultOliver = testOliver.getText();
         String actualResultGregor = testGregor.getText();
         String actualResultStefan = testStefan.getText();
@@ -170,31 +174,33 @@ public class WebTest {
         driver.quit();
     }
 
-//    @Test
-//    public static void testInputSearch() {
-//
-//        String chromeDriver = "webdriver.chrome.driver";
-//        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
-//        String url = "http://www.99-bottles-of-beer.net/";
-//        String expectedResult = "search";
-//
-//        System.setProperty(chromeDriver,driverPath);
-//        WebDriver driver = new ChromeDriver();
-//
-//        driver.get(url);
-//
-//        WebElement searchLanguages = driver.findElement(By.xpath("//ul[@id = 'menu']/li/a[@href = '/search.html']"));
-//
-//        searchLanguages.click();
-//
-//        WebElement inputName = driver.findElement(By.xpath("//input[@name = 'search']"));
-//
-//        String actualResult = inputName.getText();
-//
-//        Assert.assertEquals(actualResult,expectedResult);
-//
-//        driver.quit();
-//    }
+    @Test
+    public static void testHistoricInformation() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "History";
+
+        System.setProperty(chromeDriver,driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement historicInformation = driver.findElement(
+                By.xpath("//ul[@id = 'submenu']/li/a[@href = 'info.html']")
+        );
+
+        historicInformation.click();
+
+        WebElement history = driver.findElement(By.xpath("//div[@id = 'main']/h2"));
+
+        String actualResult = history.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
+
+        driver.quit();
+    }
 
     @Test
     public static void testSubmitLanguageEmptyValue() {
@@ -227,56 +233,19 @@ public class WebTest {
         driver.quit();
     }
 
-//    @Test
-//    public static void testSubmitLanguageError() {
-//
-//        String chromeDriver = "webdriver.chrome.driver";
-//        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
-//        String url = "http://www.99-bottles-of-beer.net/";
-//        String expectedResultError = "Error";
-//        String expectedResultPrecondition = "Precondition";
-//        String expectedResultInput = "Input";
-//        String expectedResultFailed = "failed";
-//        String expectedResultSymbolOne = ":";
-//        String expectedResultSymbolTwo = "-";
-//        String expectedResultSymbolThree = ".";
-//
-//        System.setProperty(chromeDriver,driverPath);
-//        WebDriver driver = new ChromeDriver();
-//
-//        driver.get(url);
-//
-//        WebElement submitNewLanguage = driver.findElement(
-//                By.xpath("//ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
-//        );
-//        submitNewLanguage.click();
-//
-//        WebElement buttonSubmitLanguage = driver.findElement(
-//                By.xpath("//form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
-//        );
-//        buttonSubmitLanguage.click();
-//
-//        WebElement errorText = driver.findElement(By.xpath("//div[@id = 'main']/p"));
-//        String actualResult = errorText.getText();
-//
-//        Assert.assertTrue(actualResult.contains(expectedResultError));
-//        Assert.assertTrue(actualResult.contains(expectedResultPrecondition));
-//        Assert.assertTrue(actualResult.contains(expectedResultInput));
-//        Assert.assertTrue(actualResult.contains(expectedResultFailed));
-//        Assert.assertTrue(actualResult.contains(expectedResultSymbolOne));
-//        Assert.assertTrue(actualResult.contains(expectedResultSymbolTwo));
-//        Assert.assertTrue(actualResult.contains(expectedResultSymbolThree));
-//
-//        driver.quit();
-//    }
-
     @Test
     public static void testSubmitLanguageError() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
         String url = "http://www.99-bottles-of-beer.net/";
-        String expectedResult = "Error: Precondition failed - Incomplete Input.";
+        String expectedResultError = "Error";
+        String expectedResultPrecondition = "Precondition";
+        String expectedResultInput = "Input";
+        String expectedResultFailed = "failed";
+        String expectedResultSymbolOne = ":";
+        String expectedResultSymbolTwo = "-";
+        String expectedResultSymbolThree = ".";
 
         System.setProperty(chromeDriver,driverPath);
         WebDriver driver = new ChromeDriver();
@@ -293,13 +262,50 @@ public class WebTest {
         );
         buttonSubmitLanguage.click();
 
-        WebElement errorText = driver.findElement(By.xpath("//*[.= 'Error: Precondition failed - Incomplete Input.']"));
+        WebElement errorText = driver.findElement(By.xpath("//div[@id = 'main']/p"));
         String actualResult = errorText.getText();
 
-        Assert.assertEquals(actualResult,expectedResult);
+        Assert.assertTrue(actualResult.contains(expectedResultError));
+        Assert.assertTrue(actualResult.contains(expectedResultPrecondition));
+        Assert.assertTrue(actualResult.contains(expectedResultInput));
+        Assert.assertTrue(actualResult.contains(expectedResultFailed));
+        Assert.assertTrue(actualResult.contains(expectedResultSymbolOne));
+        Assert.assertTrue(actualResult.contains(expectedResultSymbolTwo));
+        Assert.assertTrue(actualResult.contains(expectedResultSymbolThree));
 
         driver.quit();
     }
+
+//    @Test
+//    public static void testSubmitLanguageError() {
+//
+//        String chromeDriver = "webdriver.chrome.driver";
+//        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+//        String url = "http://www.99-bottles-of-beer.net/";
+//        String expectedResult = "Error: Precondition failed - Incomplete Input.";
+//
+//        System.setProperty(chromeDriver,driverPath);
+//        WebDriver driver = new ChromeDriver();
+//
+//        driver.get(url);
+//
+//        WebElement submitNewLanguage = driver.findElement(
+//                By.xpath("//ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
+//        );
+//        submitNewLanguage.click();
+//
+//        WebElement buttonSubmitLanguage = driver.findElement(
+//                By.xpath("//form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
+//        );
+//        buttonSubmitLanguage.click();
+//
+//        WebElement errorText = driver.findElement(By.xpath("//*[.= 'Error: Precondition failed - Incomplete Input.']"));
+//        String actualResult = errorText.getText();
+//
+//        Assert.assertEquals(actualResult,expectedResult);
+//
+//        driver.quit();
+//    }
 
     @Test
     public static void testSubmitLanguageText() {
@@ -317,7 +323,7 @@ public class WebTest {
         driver.get(url);
 
         WebElement submitNewLanguage = driver.findElement(
-                By.xpath("//ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
+                By.xpath("//ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
         );
         submitNewLanguage.click();
 
@@ -366,6 +372,35 @@ public class WebTest {
 
         Assert.assertEquals(actualResultСolumnOne,expectedResultСolumnOne);
         Assert.assertEquals(actualResultСolumnTwo,expectedResultСolumnTwo);
+
+        driver.quit();
+    }
+
+    @Test
+    public static void newComments() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/";
+        String expectedResult = "";
+
+        System.setProperty(chromeDriver,driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement topList = driver.findElement(By.xpath("//ul[@id = 'menu']/li/a[@href = '/toplist.html']"));
+        topList.click();
+
+        WebElement newComments = driver.findElement(
+                By.xpath("//ul[@id = 'submenu']/li/a[@href = './newcomments.html']")
+        );
+        newComments.click();
+
+        WebElement newCommentsIsEmpty = driver.findElement(By.xpath("//div[@id = 'main']/p"));
+        String actualResult = newCommentsIsEmpty.getText();
+
+        Assert.assertEquals(actualResult,expectedResult);
 
         driver.quit();
     }
