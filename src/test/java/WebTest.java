@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class WebTest {
 
     @Test
-    public static void testMenuStartTitle() throws InterruptedException {
+    public void testMenuStartTitle() throws InterruptedException {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -39,7 +39,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testMenuStartHeader() {
+    public void testMenuStartHeader() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -60,12 +60,12 @@ public class WebTest {
     }
 
     @Test
-    public static void testStartMenuSubmitNewLanguage() {
+    public void testStartMenuSubmitNewLanguage() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
         String url = "http://www.99-bottles-of-beer.net/";
-        String expectedResult = "SUBMIT NEW LANGUAGE";
+        String expectedResult = "Submit new Language";
 
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
@@ -73,17 +73,17 @@ public class WebTest {
         driver.get(url);
 
         WebElement menuSubmitNewLanguage = driver.findElement(By.xpath(
-            "//ul[@id = 'menu']/li[last()]" //В задании сказано что последний пункт меню, я решил сделать такой поиск
+            "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'menu']/li[last()]" //В задании сказано что последний пункт меню, я решил сделать такой поиск
         ));
         String actualResult = menuSubmitNewLanguage.getText();
 
-        Assert.assertEquals(actualResult, expectedResult);
+        Assert.assertEquals(actualResult, expectedResult.toUpperCase());
 
         driver.quit();
     }
 
     @Test
-    public static void testSubmitNewLanguageSubmenuSubmitNewLanguage() {
+    public void testSubmitNewLanguageSubmenuSubmitNewLanguage() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -111,7 +111,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testBrowseLanguagesFirstSubmenu() {
+    public void testBrowseLanguagesFirstSubmenu() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -128,7 +128,9 @@ public class WebTest {
         );
         menuBrowseLanguages.click();
 
-        WebElement firstSubmenu = driver.findElement(By.xpath("//ul[@id = 'submenu']/li[1]")); //В задании сказано что первый пункт подменюменю, я решил сделать такой поиск
+        WebElement firstSubmenu = driver.findElement(By.xpath(
+                "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'submenu']/li[1]"
+        )); //В задании сказано что первый пункт подменюменю, я решил сделать такой поиск
         String actualResult = firstSubmenu.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
@@ -137,7 +139,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testTheTeam() {
+    public void testTheTeam() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -151,16 +153,17 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement submenuTeam = driver.findElement(By.xpath("//ul[@id = 'submenu']/li/a[@href = 'team.html']"));
-
+        WebElement submenuTeam = driver.findElement(By.xpath(
+                "//body/div[@id = 'wrap']/div[@id = 'navigation']/ul[@id = 'submenu']/li/a[@href = 'team.html']"
+        ));
         submenuTeam.click();
 
 //        WebElement testOliver = driver.findElement(By.xpath("//h3[text () = 'Oliver Schade']"));
 //        WebElement testGregor = driver.findElement(By.xpath("//h3[text () = 'Gregor Scheithauer']"));
 //        WebElement testStefan = driver.findElement(By.xpath("//h3[text () = 'Stefan Scheler']"));
-        WebElement testOliver = driver.findElement(By.xpath("//div[@id = 'main']/h3[1]"));
-        WebElement testGregor = driver.findElement(By.xpath("//div[@id = 'main']/h3[2]"));
-        WebElement testStefan = driver.findElement(By.xpath("//div[@id = 'main']/h3[3]"));
+        WebElement testOliver = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'main']/h3[1]"));
+        WebElement testGregor = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'main']/h3[2]"));
+        WebElement testStefan = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'main']/h3[3]"));
 
         String actualResultOliver = testOliver.getText();
         String actualResultGregor = testGregor.getText();
@@ -174,7 +177,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testHistoricInformation() {
+    public void testHistoricInformation() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -187,12 +190,11 @@ public class WebTest {
         driver.get(url);
 
         WebElement historicInformation = driver.findElement(
-                By.xpath("//ul[@id = 'submenu']/li/a[@href = 'info.html']")
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'submenu']/li/a[@href = 'info.html']")
         );
-
         historicInformation.click();
 
-        WebElement history = driver.findElement(By.xpath("//div[@id = 'main']/h2"));
+        WebElement history = driver.findElement(By.xpath("//body/div[@id = 'wrap']/div[@id = 'main']/h2"));
 
         String actualResult = history.getText();
 
@@ -202,7 +204,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testSubmitLanguageEmptyValue() {
+    public void testSubmitLanguageEmptyValue() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -214,17 +216,17 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement submitNewLanguage = driver.findElement(
-                By.xpath("//ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
-        );
+        WebElement submitNewLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']"
+                ));
         submitNewLanguage.click();
 
-        WebElement buttonSubmitLanguage = driver.findElement(
-                By.xpath("//form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
+        WebElement buttonSubmitLanguage = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']" +
+                "/form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
         );
         buttonSubmitLanguage.click();
 
-        WebElement errorText = driver.findElement(By.xpath("//div[@id = 'main']/p"));
+        WebElement errorText = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id = 'main']/p"));
         String actualResult = errorText.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
@@ -233,7 +235,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testSubmitLanguageError() {
+    public void testSubmitLanguageError() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -251,17 +253,18 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement submitNewLanguage = driver.findElement(
-                By.xpath("//ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
-        );
+        WebElement submitNewLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@ id = 'menu']/li/a[@href = '/submitnewlanguage.html']"
+                ));
         submitNewLanguage.click();
 
-        WebElement buttonSubmitLanguage = driver.findElement(
-                By.xpath("//form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
+        WebElement buttonSubmitLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@type = 'submit']" +
+                        "[@name = 'submitlanguage']")
         );
         buttonSubmitLanguage.click();
 
-        WebElement errorText = driver.findElement(By.xpath("//div[@id = 'main']/p"));
+        WebElement errorText = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id = 'main']/p"));
         String actualResult = errorText.getText();
 
         Assert.assertTrue(actualResult.contains(expectedResultError));
@@ -307,7 +310,7 @@ public class WebTest {
 //    }
 
     @Test
-    public static void testSubmitLanguageText() {
+    public void testSubmitLanguageText() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -321,18 +324,19 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement submitNewLanguage = driver.findElement(
-                By.xpath("//ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
-        );
+        WebElement submitNewLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']"
+                ));
         submitNewLanguage.click();
 
-        WebElement buttonSubmitLanguage = driver.findElement(
-                By.xpath("//form[@id='addlanguage']/p/input[@type = 'submit'][@name = 'submitlanguage']")
-        );
+        WebElement buttonSubmitLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='main']/form[@id='addlanguage']/p/input[@type = 'submit']" +
+                        "[@name = 'submitlanguage']"
+                ));
         buttonSubmitLanguage.click();
 
         WebElement text = driver.findElement(
-                By.xpath("//div[@id = 'main']/ul/li[1]")
+                By.xpath("//body/div[@id='wrap']/div[@id = 'main']/ul/li[1]")
         );
         String actualResult = text.getText();
 
@@ -342,7 +346,7 @@ public class WebTest {
     }
 
     @Test
-    public static void testBrowseLanguagesTable() {
+    public void testBrowseLanguagesTable() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -356,16 +360,16 @@ public class WebTest {
         driver.get(url);
 
         WebElement menuBrowseLanguages = driver.findElement(
-                By.xpath("//ul[@id = 'menu']/li/a[@href = '/abc.html']")
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'menu']/li/a[@href = '/abc.html']")
         );
         menuBrowseLanguages.click();
 
         WebElement tableСolumnOne = driver.findElement(
-                By.xpath("//table[@id = 'category']/tbody/tr/th[1]")
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/table[@id = 'category']/tbody/tr/th[1]")
         );
         String actualResultСolumnOne = tableСolumnOne.getText();
         WebElement tableСolumnTwo = driver.findElement(
-                By.xpath("//table[@id = 'category']/tbody/tr/th[2]")
+                By.xpath("//body/div[@id='wrap']/div[@id='main']/table[@id = 'category']/tbody/tr/th[2]")
         );
         String actualResultСolumnTwo = tableСolumnTwo.getText();
 
@@ -376,7 +380,7 @@ public class WebTest {
     }
 
     @Test
-    public static void newComments() {
+    public void newComments() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -388,15 +392,17 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement topList = driver.findElement(By.xpath("//ul[@id = 'menu']/li/a[@href = '/toplist.html']"));
+        WebElement topList = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'menu']/li/a[@href = '/toplist.html']"
+        ));
         topList.click();
 
-        WebElement newComments = driver.findElement(
-                By.xpath("//ul[@id = 'submenu']/li/a[@href = './newcomments.html']")
-        );
+        WebElement newComments = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'submenu']/li/a[@href = './newcomments.html']"
+                ));
         newComments.click();
 
-        WebElement newCommentsIsEmpty = driver.findElement(By.xpath("//div[@id = 'main']/p"));
+        WebElement newCommentsIsEmpty = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id = 'main']/p"));
         String actualResult = newCommentsIsEmpty.getText();
 
         Assert.assertEquals(actualResult,expectedResult);
@@ -405,7 +411,7 @@ public class WebTest {
     }
 
     @Test
-    public static void styleImportant() {
+    public void styleImportant() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "C:/Users/79044/chromedriver_win32/chromedriver.exe";
@@ -420,19 +426,22 @@ public class WebTest {
 
         driver.get(url);
 
-        WebElement submitNewLanguage = driver.findElement(
-                By.xpath("//ul[@id = 'menu']/li/a[@href = '/submitnewlanguage.html']")
-        );
+        WebElement submitNewLanguage = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='navigation']/ul[@id = 'menu']/li/a[@href='/submitnewlanguage.html']"
+                ));
         submitNewLanguage.click();
 
-        WebElement submitNewLanguageImportantStyle = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span"));
+        WebElement submitNewLanguageImportantStyle = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id='main']/ul/li/span"));
         String actualResultStyle = submitNewLanguageImportantStyle.getAttribute("style");
 
-        WebElement submitNewLanguageImportantBolt = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span/b"));
+        WebElement submitNewLanguageImportantBolt = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id = 'main']/ul/li/span/b"));
         String actualResultBolt = submitNewLanguageImportantBolt.getTagName();
 //        String actualResultBolt = submitNewLanguageImportantBolt.getCssValue("font-weight");
 
-        WebElement submitNewLanguageImportantCapital = driver.findElement(By.xpath("//div[@id = 'main']/ul/li/span/b"));
+        WebElement submitNewLanguageImportantCapital = driver.findElement(By.xpath(
+                "//body/div[@id='wrap']/div[@id = 'main']/ul/li/span/b"));
         String actualResultCapital = submitNewLanguageImportantCapital.getText();
 
         Assert.assertEquals(actualResultStyle,expectedResultStyle);

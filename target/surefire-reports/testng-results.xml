@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="13" passed="13" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-05-21T00:17:47 MSK" name="WebTest" finished-at="2022-05-21T00:18:32 MSK" duration-ms="45406">
+    <groups>
+    </groups>
+    <test started-at="2022-05-21T00:17:47 MSK" name="Command line test" finished-at="2022-05-21T00:18:32 MSK" duration-ms="45406">
+      <class name="WebTest">
+        <test-method signature="newComments()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:17:47 MSK" name="newComments" finished-at="2022-05-21T00:17:52 MSK" duration-ms="5815" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- newComments -->
+        <test-method signature="styleImportant()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:17:52 MSK" name="styleImportant" finished-at="2022-05-21T00:17:57 MSK" duration-ms="5062" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- styleImportant -->
+        <test-method signature="testBrowseLanguagesFirstSubmenu()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:17:57 MSK" name="testBrowseLanguagesFirstSubmenu" finished-at="2022-05-21T00:18:02 MSK" duration-ms="4880" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBrowseLanguagesFirstSubmenu -->
+        <test-method signature="testBrowseLanguagesTable()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:02 MSK" name="testBrowseLanguagesTable" finished-at="2022-05-21T00:18:05 MSK" duration-ms="3081" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBrowseLanguagesTable -->
+        <test-method signature="testHistoricInformation()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:05 MSK" name="testHistoricInformation" finished-at="2022-05-21T00:18:08 MSK" duration-ms="2757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testHistoricInformation -->
+        <test-method signature="testMenuStartHeader()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:08 MSK" name="testMenuStartHeader" finished-at="2022-05-21T00:18:10 MSK" duration-ms="2175" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMenuStartHeader -->
+        <test-method signature="testMenuStartTitle()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:10 MSK" name="testMenuStartTitle" finished-at="2022-05-21T00:18:15 MSK" duration-ms="4415" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMenuStartTitle -->
+        <test-method signature="testStartMenuSubmitNewLanguage()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:15 MSK" name="testStartMenuSubmitNewLanguage" finished-at="2022-05-21T00:18:17 MSK" duration-ms="2654" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testStartMenuSubmitNewLanguage -->
+        <test-method signature="testSubmitLanguageEmptyValue()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:17 MSK" name="testSubmitLanguageEmptyValue" finished-at="2022-05-21T00:18:20 MSK" duration-ms="2792" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmitLanguageEmptyValue -->
+        <test-method signature="testSubmitLanguageError()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:20 MSK" name="testSubmitLanguageError" finished-at="2022-05-21T00:18:23 MSK" duration-ms="3226" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmitLanguageError -->
+        <test-method signature="testSubmitLanguageText()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:23 MSK" name="testSubmitLanguageText" finished-at="2022-05-21T00:18:27 MSK" duration-ms="3166" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmitLanguageText -->
+        <test-method signature="testSubmitNewLanguageSubmenuSubmitNewLanguage()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:27 MSK" name="testSubmitNewLanguageSubmenuSubmitNewLanguage" finished-at="2022-05-21T00:18:29 MSK" duration-ms="2797" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSubmitNewLanguageSubmenuSubmitNewLanguage -->
+        <test-method signature="testTheTeam()[pri:0, instance:WebTest@359f7cdf]" started-at="2022-05-21T00:18:29 MSK" name="testTheTeam" finished-at="2022-05-21T00:18:32 MSK" duration-ms="2507" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTheTeam -->
+      </class> <!-- WebTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- WebTest -->
+</testng-results>
